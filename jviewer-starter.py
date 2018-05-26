@@ -55,7 +55,7 @@ def update_jars(server):
     elif system == "Windows":
         natives = "Win"
         path = os.environ.get("LOCALAPPDATA")
-    elif system == "MacOS":
+    elif system == "Darwin":
         natives = "Mac"
         path = os.path.expanduser('~/Library/Application Support')
     else:
