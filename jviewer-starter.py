@@ -69,7 +69,14 @@ def update_jars(server):
         jar_path = os.path.join(path, jar)
         if not os.path.exists(jar_path):
             print("downloading %s -> %s" % (base + jar, jar_path))
-            urlretrieve(base + jar, jar_path)
+            try:
+                urlretrieve(base + jar, jar_path)
+            except Exception as e:
+                if jar == "JViewer-SOC.jar":
+                    print("Ignored SOC file")
+                    continue
+                else:
+                    raise e
             if jar == natives:
                 print("extracting %s" % jar_path)
                 with zipfile.ZipFile(jar_path, 'r') as natives_jar:
